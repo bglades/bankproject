@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
 import React from 'react'
-
+import styles from './Home.module.css'
 
 export default function Balance( { uid }) {
     const [amount, setAmount] = useState('')
@@ -17,16 +17,20 @@ export default function Balance( { uid }) {
             amount
         })
       setAmount('')
+      
     }
-
 
   return (
     <>
-    
-
     <form onSubmit={handleSubmit}>
         <label>
-            <h3>Make a Deposit</h3>
+            <h3>Manage Funds</h3>
+            <div className={styles.checkbox}>
+            <input type='checkbox' id='deposit' />
+          <label for = 'deposit'> Deposit </label>
+            <input type='checkbox' id='withdraw'/> 
+          <label for = 'withdraw'>Withdraw </label>
+          </div>
             <span>Amount:</span>
             <input
             type="number"
@@ -35,9 +39,10 @@ export default function Balance( { uid }) {
             value={amount}>
             </input>
         </label>
-        <button>Deposit</button>
+        <button>Confirm</button>
     </form>
    <br/>
+   
     </>
   )
 }
